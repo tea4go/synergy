@@ -1,4 +1,4 @@
-# Synergy Core
+# Synergy Core test
 
 This is the open source core component of Synergy, a keyboard and mouse sharing tool.
 
