@@ -67,8 +67,7 @@ jobs:
         . ./version
         msbuild synergy-core.sln /p:Configuration=Release /p:Platform="x64" /m
         cd ..
-        tree
-        copy ext\openssl\windows\x64\bin\* build\
+        tree /f /a |findstr ".exe"       
     
     - name: Create Artifacts
       uses: actions/upload-artifact@v3
