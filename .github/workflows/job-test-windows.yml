@@ -1,4 +1,4 @@
-name: Windows
+name: compile the program
 
 on:
   push:
@@ -64,8 +64,15 @@ jobs:
         mkdir build
         cd build
         cmake -DCMAKE_BUILD_TYPE=Release ..
-        . ./version
-        msbuild synergy-core.sln /p:Configuration=Release
-
+        msbuild synergy-core.sln /p:Configuration=Release /p:Platform="x64" /m
+        cd ..
+        copy ext\openssl\windows\x64\bin\* build\
+    
+    - name: Create Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: build
+        path: .\build
+        
     - name: Run unit test
       run: .\build\bin\Release\unittests.exe
